@@ -1,0 +1,33 @@
+<div class="container-fluid">
+<div class="row">
+    <h1 class="text-center">Modifier mon mot de passe</h1>
+
+    <div class="col-md-8 col-md-offset-2">
+        <form class="form-horizontal" role="form" ng-submit="changePwd(user.id, oldPwd, newPwd, newPwdBis)">
+            <div class="form-group">
+                <label for="inputOldPwd" class="col-md-2 text-right control-label">L'ancien</label>
+                <div class="col-md-10">
+                    <input type="password" class="form-control" id="inputOldPwd" ng-model="oldPwd" placeholder="Ancien mot de passe">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputNewPwd" class="col-md-2 text-right control-label">Le nouveau</label>
+                <div class="col-md-10">
+                    <input type="password" class="form-control" id="inputNewPwd" ng-model="newPwd" placeholder="Nouveau mot de passe">
+                </div>
+            </div>
+            <div class="form-group" ng-class="newPwd != newPwdBis && 'has-error' || ''">
+                <label for="inputNewPwdBis" class="col-md-2 text-right control-label">Confirmation</label>
+                <div class="col-md-10">
+                    <input type="password" class="form-control" id="inputNewPwdBis" ng-model="newPwdBis" placeholder="Confirmation">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1 class="text-center">Identification</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 well">
+    <form class="form-horizontal" ng-submit="connexion(login)">
+        <div class="form-group">
+            <label for="login.login" class="col-md-2 text-right control-label">Identifiant</label>
+            <div class="col-md-10">
+                <input ng-model="login.login" type="text" id="login.login" class="form-control" name="login" placeholder="Login" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="login.password" class="col-md-2 text-right control-label">Mot de passe</label>
+            <div class="col-md-10">
+                <input ng-model="login.password" type="password" id="login.password" class="form-control" name="password" placeholder="Mot de passe" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary" value="Connexion" />
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+</div>

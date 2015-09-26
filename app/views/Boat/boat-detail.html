@@ -1,0 +1,131 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1 class="text-center">{{ boat.name }}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 text-center">
+        <a ui-sref="admin.boats"><span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste</a>
+        <p><button class="btn btn-info btn-sm" ng-click="updateBoat()" ng-class="updating && 'disabled'"><span class="glyphicon glyphicon-refresh" ng-class="updating && 'glyphicon-refresh-animate'"></span> Actualiser la page</button></p>
+    </div>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title text-center">Informations sur le bateau</h4>
+            </div>
+            <div class="panel-body">
+                <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal-boat-edit"><span class="glyphicon glyphicon-edit"></span> Modifier</button>
+                <dl class="dl-horizontal">
+                    <dt ng-if="boat.created != null">Créé le</dt>
+                    <dd ng-if="boat.created != null">{{ boat.created | date:'dd/MM/yyyy HH:mm' }}</dd>
+                    <dt>Catégorie</dt>
+                    <dd>{{ boat.category | catDisp }}</dd>
+                    <dt>État</dt>
+                    <dd>
+                        <span ng-if="boat.valid" class="label label-success">validé</span>
+                        <span ng-if="!boat.valid" class="label label-danger">non validé</span>
+                        <span ng-if="boat.payment" class="label label-success">payé</span>
+                        <span ng-if="!boat.payment" class="label label-danger">non payé</span>
+                    </dd>
+                    <dt>Temps effectué</dt>
+                    <dd>
+                        <span ng-if="boat.record == 0">N/A</span>
+                        <span ng-if="boat.record != 0" class="label label-info">{{ boat.record | recordDisp }}</span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title text-center">Référent</h4>
+            </div>
+            <div class="panel-body">
+                <a role="button" class="btn btn-warning btn-xs" ui-sref="admin.leader({boat: boat.id, id: leader.id, cat: catType})"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+                <dl class="dl-horizontal">
+                    <dt>Nom</dt>
+                    <dd>{{ boat.leader.rower.lastname | uppercase }}</dd>
+                    <dt>Prénom</dt>
+                    <dd>{{ boat.leader.rower.firstname }}</dd>
+                    <dt>Email</dt>
+                    <dd><a title="Envoyer un mail à {{ boat.leader.rower.firstname }}" href="mailto:{{ boat.leader.email }}">{{ boat.leader.email }}</a></dd>
+                    <dt>Téléphone</dt>
+                    <dd>{{ boat.leader.phone | phoneDisp }}</dd>
+                    <dt ng-if="catType == 'C'">Club</dt>
+                    <dd ng-if="catType == 'C'">{{ boat.leader.club }}</dd>
+                    <dt ng-if="catType == 'U'">Université</dt>
+                    <dd ng-if="catType == 'U'">{{ boat.leader.club }}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title text-center">Équipage</h4>
+            </div>
+            <div class="panel-body">
+                <span ng-repeat="rower in boat.rowers | orderBy:'lastname'">
+                    <a class="text-warning" ui-sref="admin.rower({boat: boat.id, id: rower.id})" title="Modifier ce rameur">
+                    <span class="glyphicon glyphicon-edit"></span></a>&emsp;{{ rower.lastname | uppercase }} {{ rower.firstname }} (FFSU : {{ rower.license }}, né(e) le {{ rower.birthdate | date:'dd/MM/yyyy' }})<br />
+                </span>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title text-center">Opérations</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div ng-class="!boat.payment && 'col-md-6 text-center' || 'col-md-12 text-center'" ng-if="!boat.valid">
+                        <a class="btn btn-primary" ng-click="validBoat()">Valider le bateau</a>
+                    </div>
+                    <div ng-class="!boat.payment && 'col-md-6 text-center' || 'col-md-12 text-center'" ng-if="boat.valid">
+                        <form class="form-inline" ng-submit="recordBoat(record)">
+                            <div class="form-group">
+                                <label for="boatRecordInput" class="sr-only">Temps effectué</label>
+                                <input type="text" class="form-control" id="boatRecordInput" placeholder="mm:ss:ddd" ng-focus="expression" ng-model="record" ui-mask="99:99:999" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Valider le temps" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 text-center" ng-if="!boat.payment">
+                        <a class="btn btn-primary" ng-click="payBoat()">Valider le paiement</a>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <br />
+                        <a class="btn btn-danger" ng-click="removeBoat()">Supprimer le bateau</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-boat-edit" tabindex="-1" role="dialog" aria-labelledby="modalBoatEditLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span>
+                        </button>
+                        <h4 class="modal-title" id="modalBoatEditLabel">Modifier le bateau</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="inputBoatName" class="col-md-4 text-right control-label">Nom du bateau</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="inputBoatName" ng-model="boatE.name">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" ng-click="editBoat(boatE.id)">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

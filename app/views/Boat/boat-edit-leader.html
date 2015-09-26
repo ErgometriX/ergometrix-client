@@ -1,0 +1,46 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1 class="text-center">Modifier les informations d'un référent</h1>
+        <h2 class="text-center">{{ leader.rower.lastname | uppercase }} {{ leader.rower.firstname }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <form class="form-horizontal" role="form" ng-submit="updateLeader(ldr)">
+            <input type="hidden" value="ldr.id">
+            <div class="form-group">
+                <label for="inputLeaderEmail" class="col-md-3 text-right control-label">Email</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="inputLeaderEmail" ng-model="ldr.email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputLeaderPhone" class="col-md-3 text-right control-label">Téléphone</label>
+                <div class="col-md-9">
+                    <input type="tel" class="form-control" id="inputLeaderPhone" ng-model="ldr.phone">
+                    <span class="help-block">Entrez le numéro de téléphone au format "06xxxxxxxx" (pas de points ni de tirets).</span>
+                </div>
+            </div>
+            <div class="form-group" ng-if="catType == 'U'">
+                <label for="inputLeaderClub" class="col-md-3 text-right control-label">Université</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="inputLeaderClub" ng-model="ldr.club" placeholder="Université">
+                </div>
+            </div>
+            <div class="form-group" ng-if="catType == 'C'">
+                <label for="inputLeaderClub" class="col-md-3 text-right control-label">Club</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="inputLeaderClub" ng-model="ldr.club" placeholder="Club">
+                </div>
+            </div>
+            <input ng-if="catType == 'A'" type="hidden" ng-model="ldr.club" value="''" id="inputLeaderClub">
+            <div class="form-group text-center">
+                <input type="submit" class="btn btn-success" value="Enregistrer">
+                &ensp;
+                <a ui-sref="admin.boat({id: boatId})" title="Revenir au bateau" class="btn btn-danger">Retour</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1 class="text-center">Modifier les informations d'un rameur</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <form class="form-horizontal" role="form" ng-submit="updateRower(rwr)">
+            <input type="hidden" value="rwr.id">
+            <div class="form-group">
+                <label for="inputRowerLastname" class="col-md-3 text-right control-label">Nom</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="inputRowerLastname" ng-model="rwr.lastname" placeholder="Nom">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRowerFirstname" class="col-md-3 text-right control-label">Prénom</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="inputRowerFirstname" ng-model="rwr.firstname" placeholder="Prénom">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRowerLicense" class="col-md-3 text-right control-label">No de license FFSU</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="inputRowerLicense" ng-model="rwr.license" placeholder="Numéro de licence FFSU">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRowerBirthdate" class="col-md-3 text-right control-label">Date de naissance</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="inputRowerBirthdate" ng-model="rwr.birthdate" ui-mask="99/99/9999" placeholder="{{ rower.birthdate | date:'dd/MM/yyyy' }}">
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" class="btn btn-success" value="Enregistrer">
+                &ensp;
+                <a ui-sref="admin.boat({id: boatId})" title="Revenir au bateau" class="btn btn-danger">Retour</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

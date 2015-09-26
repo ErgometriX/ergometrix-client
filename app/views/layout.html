@@ -1,0 +1,69 @@
+<div>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="bardenav container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand orbitron-face" ui-sref="root.presentation">ErgometriX</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav" id="listeLiens">
+          <li ng-class="pageActive == 'competition' && 'active'">
+            <a title="La compétition" ui-sref="root.competition" onclick="hideMenu()">La compétition</a>
+          </li>
+          <li ng-class="pageActive == 'infosPratiques' && 'active'">
+            <a title="Informations pratiques" ui-sref="root.infosPratiques" onclick="hideMenu()">Informations pratiques</a>
+          </li>
+          <li ng-class="pageActive == 'filRouge' && 'active'">
+            <a title="Fil rouge" ui-sref="root.filRouge" onclick="hideMenu()">Fil rouge</a>
+          </li>
+          <!--<li ng-class="pageActive == 'preparation' && 'active'">
+            <a title="Conseils de préparation à la compétition" ui-sref="root.preparation" onclick="hideMenu()">Préparation</a>
+          </li>-->
+          <li ng-class="pageActive == 'inscription' && 'active'" ng-if="checkInscription.check == 1">
+            <a title="Inscription" ui-sref="root.inscription" onclick="hideMenu()">Inscription</a>
+          </li>
+          <li ng-class="pageActive == 'mesBateaux' && 'active'">
+            <a title="Mes bateaux" ui-sref="root.myBoats" onclick="hideMenu()">Mes bateaux</a>
+          </li>
+          <li ng-class="pageActive == 'resultats' && 'active'" ng-if="displayResults.check == 1">
+            <a title="Résultats" ui-sref="root.resultats" onclick="hideMenu()">Résultats</a>
+          </li>
+          <li ng-class="pageActive == 'objets-trouves' && 'active'">
+            <a title="Les objets oubliés à la compétition..." ui-sref="root.objetstrouves" onclick="hideMenu()">Objets trouvés</a>
+          </li>
+          <li ng-class="pageActive == 'galerie' && 'active'">
+            <a title="Galerie photos" ui-sref="root.galerie({cat: 'ambiance'})" onclick="hideMenu()">Galerie</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="notvisible" ui-sref="admin.dashboard" ng-if="authCheck" onclick="hideMenu()">Admin</a></li>
+          <li><a class="notvisible" ui-sref="root.login" ng-if="!authCheck" onclick="hideMenu()">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div ui-view id="content-ui-view"></div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 well well-sm text-center">
+      <small><a title="Rejoignez l'événement Facebook" href="https://www.facebook.com/events/1528599550714493" target="_blank"><img src="assets/img/FB-f-Logo__blue_29.png" alt="Facebook" style="height: 20px; vertical-align: bottom;" /></a>&nbsp;<a title="Rejoignez l'événement Facebook" href="https://www.facebook.com/events/1528599550714493" target="_blank">Rejoignez l'événement !</a> &mdash; <a href="mailto:ergometrix2014@gmail.com" title="Envoyez-nous un mail">Nous contacter</a> &mdash; <a href="mailto:camille.masset@polytechnique.edu" title="Contacter le webmestre">Webmestre</a></small> 
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+function hideMenu() {
+  if($('#bs-example-navbar-collapse-1').hasClass('in')) {
+    $('#bs-example-navbar-collapse-1').collapse('toggle');
+  }
+}
+</script>

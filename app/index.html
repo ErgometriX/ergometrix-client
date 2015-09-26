@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="ergo.app" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ErgometriX</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css"/>
+  <link rel="stylesheet" href="assets/css/blueimp-gallery.min.css">
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-ui-utils/mask.js"></script>
+  <script src="bower_components/ngstorage/ngStorage.min.js"></script>
+  <script src="assets/js/PhoneFormat.js"></script>
+  <script src="scripts/filters.js"></script>
+  <script src="scripts/controllers/main.js"></script>
+  <script src="scripts/controllers/boat.js"></script>
+  <script src="scripts/controllers/action.js"></script>
+  <script src="scripts/controllers/admin.js"></script>
+  <script src="scripts/controllers/user.js"></script>
+  <script src="scripts/controllers/ranking.js"></script>
+  <script src="scripts/services.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/directives/directives.js"></script>
+  <script src="app.js"></script>
+
+
+<body ui-view ng-class="pageActive == 'presentation' && 'backPres'">
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <script src="assets/js/jquery.blueimp-gallery.min.js"></script>
+  <script>
+    $('#links').click(function (event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement,
+            link = target.src ? target.parentNode : target,
+            options = {index: link, event: event},
+            links = this.getElementsByTagName('a');
+        blueimp.Gallery(links, options);
+    });
+  </script>
+</head>
+</body>
+</html>

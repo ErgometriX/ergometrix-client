@@ -1,0 +1,466 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h1 class="text-center">Inscription à la compétition</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1 well">
+        <div ng-if="etape == 'acces'">
+            <h3 class="text-center">Accès</h3>
+            <form class="form-horizontal" role="form" ng-submit="verifAccesInscription(code)">
+                <div class="form-group">
+                    <label for="inputCode" class="col-md-3 text-right">Code d'accès</label>
+                    <div class="col-md-9">
+                        <input type="password" id="inputCode" class="form-control" ng-model="code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value="Suivant" ng-class="(code == '' || computing) && 'disabled'" ng-click="computing = true" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div ng-if="etape == 0">
+            <h3 class="text-center">Modalités d'inscription</h3>
+            <p class="lead">Merci de lire les informations ci-dessous. Une fois ces conditions acceptées, vous pourrez inscrire votre équipage.</p>
+            <h4>Avant le jour de l'épreuve</h4>
+            <p>L'inscription se fait en ligne depuis ce site. Les préinscriptions sur le site sont possibles jusqu'au vendredi 5 décembre 2014 à 22h.<br />
+            Tout engagement est ferme et définitif. Il implique l'acceptation complète du règlement et ne peut faire l'objet de remboursement pour quelque motif que ce soit (maladie, examen, mariage, etc.).</p>
+            <p>Le règlement se fait <em>en liquide le jour de la compétition</em> ou <em>par chèque</em> à l'ordre du Binet Aviron. L'adresse de règlement est la suivante :
+            <address class="text-center">
+            M. GOURDON André<br />
+            10 boulevard des maréchaux<br />
+            Résidence FOCH<br />
+            Studio 101016<br />
+            91120 PALAISEAU, FRANCE
+            </address>
+            L'inscription en ligne n'est valable que si toutes les rubriques du formulaire d'inscription sont complétées et si le paiement et les documents nécessaires sont parvenus à l'organisateur au plus tard 1h avant la course.</p>
+
+            <h4>Le jour de l'épreuve</h4>
+            <p>Les nouvelles inscriptions se font au bureau d'accueil, en fonction des places disponibles dans la catégorie souhaitée.</p>
+
+            <h4>Tarifs (par personne, repas de midi et buffet de clôture inclus)</h4>
+            <ul>
+                <li>5,00 € pour les inscriptions en ligne,</li>
+                <li>15,00 € le jour de l'épreuve.</li>
+            </ul>
+            (Le tarif est identique pour tous les statuts et donne un droit d'accès aux épreuves de ErgometriX en accord avec l'Article 9 du règlement.)<br />
+            Le montant de l'inscription reste acquis à l'organisation en cas de non présentation d'un concurrent à l'épreuve.<br />
+            Pour les X : possibilité de payer par trigramme Bôb, il suffit de le préciser lors de l'inscription en envoyant un mail à <a href="mailto:ergometrix2014@gmail.com">ergometrix2014@gmail.com</a>. 
+
+            <h4>Constitution d'équipage</h4>
+            <p>Un équipage est formé de rameurs d'une même catégorie, au nombre de un, deux, quatre ou huit.<br />
+            Un rameur peut participer à plusieurs courses selon les conditions exposées à l'article 9 du règlement (<a ui-sref="root.competition" title="Catégories ouvertes">plus d'informations ici</a>).
+
+            <h4>Contact</h4>
+            <p>N'hésitez pas à nous contacter si besoin : <a href="mailto:ergometrix2014@gmail.com" title="Nous contacter">ergometrix2014@gmail.com</a>.</p>
+
+            <form class="form-horizontal" role="form" ng-submit="acceptConditions(acceptConditionsCheck)">
+                <div class="form-group">
+                    <label for="inputAcceptConditions" class="checkbox text-center">
+                        <input type="checkbox" id="inputAcceptConditions" ng-model="acceptConditionsCheck">
+                        Je comprends et j'accepte les conditions ci-dessous.
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value="Suivant" ng-class="(!acceptConditionsCheck || computing) && 'disabled'" ng-click="computing = true" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div ng-if="etape == 1">
+            <h3 class="text-center">Étape 1 &mdash; Bateau</h3>
+            <form class="form-horizontal" role="form" ng-submit="addBoat(boat)">
+                <div class="form-group" ng-class="!isNewName && 'has-error' || ''">
+                    <label for="inputBoatName" class="col-md-2 text-right control-label">Nom du bateau</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputBoatName" ng-model="boat.name" ng-blur="checkName(boat.name)" placeholder="Nom du bateau" required="required">
+                        <span class="help-block" ng-if="!isNewName">Ce nom existe déjà. Choisissez-en un autre.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputBoatCategory" class="col-md-2 text-right control-label">Catégorie</label>
+                    <div class="col-md-10">
+                        <select class="form-control" ng-model="boat.category" id="inputBoatCategory">
+                            <option></option>
+                            <option ng-repeat="cat in categoriesBoat" value="{{ cat.codeN }}">{{ cat.label }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value="Suivant" ng-class="(!isNewName || computing) && 'disabled' || ''" ng-click="computing = true" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div ng-if="etape == 2">
+            <h3 class="text-center">Étape 2 &mdash; Membre référent</h3>
+            <p class="lead">Renseignez soigneusement ces informations. Elles nous serviront à vous confirmer votre inscription et éventuellement à vous contacter en cas de problème.</p>
+            <form class="form-horizontal" role="form" ng-submit="addLeader(leader, catType, typeLicense)">
+                <div class="form-group">
+                    <label for="inputLeaderLastname" class="col-md-2 text-right control-label">Nom</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputLeaderLastname" ng-model="leader.lastname" placeholder="Nom" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLeaderFirstname" class="col-md-2 text-right control-label">Prénom</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputLeaderFirstname" ng-model="leader.firstname" placeholder="Prénom" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLeaderEmail" class="col-md-2 text-right control-label">Email</label>
+                    <div class="col-md-10">
+                        <input type="email" class="form-control" id="inputLeaderEmail" ng-model="leader.email" placeholder="Email" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLeaderPhone" class="col-md-2 text-right control-label">Téléphone</label>
+                    <div class="col-md-10">
+                        <input type="tel" class="form-control" id="inputLeaderPhone" ng-model="leader.phone" placeholder="Téléphone" required="required">
+                        <span class="help-block">Entrez votre numéro de téléphone au format "06xxxxxxxx" (pas de points ni de tirets).</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLeaderLicense" class="col-md-2 text-right control-label">Licence</label>
+                    <div class="col-md-10">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="typeLicense" ng-model="typeLicense" value="FFA">
+                                FFA
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="typeLicense" ng-model="typeLicense" value="FFSU">
+                                FFSU
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="typeLicense" ng-model="typeLicense" value="FCD">
+                                FCD
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="typeLicense" ng-model="typeLicense" value="Aucune">
+                                Aucune
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="typeLicense != 'Aucune'">
+                    <label for="inputLeaderLicense" class="col-md-2 text-right control-label">Numéro</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputLeaderLicense" ng-model="leader.license" placeholder="Numéro de licence {{ typeLicense }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLeaderBirthdate" class="col-md-2 text-right control-label">Date de naissance</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputLeaderBirthdate" ng-model="leader.birthdate" ui-mask="99/99/9999" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputTypeCategory" class="col-md-2 text-right control-label">Catégorie</label>
+                    <div class="col-md-10">
+                        <div class="radio" ng-hide="boat.category == '4-m' || boat.category == '4-f'">
+                            <label>
+                                <input type="radio" id="typeCatU" ng-model="catType" value="-U">
+                                Universitaire &emsp; <span ng-if="boat.category == '4-x'" class="text-danger strong">Pour cette catégorie, les numéros de licence FFSU de tous les participants sont nécessaires</span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="typeCatC" ng-model="catType" value="-C">
+                                Club
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="typeCatA" ng-model="catType" value="-A">
+                                Amateur
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="catType == '-U'">
+                    <label for="inputLeaderClub" class="col-md-2 text-right control-label">Université</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputLeaderClub" ng-model="leader.club" placeholder="Université" required="required">
+                    </div>
+                </div>
+                <div class="form-group" ng-if="catType == '-C'">
+                    <label for="inputLeaderClub" class="col-md-2 text-right control-label">Club</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputLeaderClub" ng-model="leader.club" placeholder="Club" required="required">
+                    </div>
+                </div>
+                <div class="form-group" ng-if="catType == '-A'" ng-hide="true">
+                    <label for="inputLeaderClub" class="col-md-2 text-right control-label">Club</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputLeaderClub" ng-model="leader.club" placeholder="Club">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" ng-class="(catType == '' || computing) && 'disabled' || ''" value="Suivant" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div ng-if="etape == 3 && rowers.length != 0">
+            <h3 class="text-center">Étape 3 &mdash; Équipage</h3>
+            <p class="lead">Veuillez saisir ici les noms, prénoms, dates de naissance et numéros de licence FFSU des <strong>autres</strong> candidats de votre bateau.</p>
+            <form class="form-horizontal" role="form" ng-submit="addRowers(rowers)">
+                <div ng-repeat="rower in rowers">
+                <div class="form-group">
+                    <h5 class="col-md-12">Rameur {{ $index + 1 }}</h5>
+                    <label for="inputRower{{ $index }}Lastname" class="col-md-2 text-right control-label">Nom</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="inputRower{{ $index }}Lastname" ng-model="rowers[$index].lastname" placeholder="Nom" required="required">
+                    </div>
+                    <label for="inputRower{{ $index }}Firstname" class="col-md-2 text-right control-label">Prénom</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="inputRower{{ $index }}Firstname" ng-model="rowers[$index].firstname" placeholder="Prénom" required="required">
+                    </div>
+                    <label for="inputRower{{ $index }}License" class="col-md-2 text-right control-label">No de licence</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="inputRower{{ $index }}License" ng-model="rowers[$index].license" placeholder="Numéro de licence">
+                    </div>
+                    <label for="inputRower{{ $index }}Birthdate" class="col-md-2 text-right control-label">Date de naissance</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="inputRower{{ $index }}Birthdate" ng-model="rowers[$index].birthdate" ui-mask="99/99/9999" required="required">
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value="Suivant" ng-class="computing && 'disabled' || ''" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div ng-if="etape == 4">
+            <h3 class="text-center">Étape {{ rowers.length != 0 && '4' || '3' }} &mdash; Vérification</h3>
+            <p class="lead">Veuillez relire les informations ci-dessous, éventuellement les corriger, et cliquer sur <span class="label label-success">Valider</span> pour finaliser votre inscription. Vous recevrez un email de confirmation à l'adresse que vous avez fournie.</p>
+            <p><button class="btn btn-info btn-sm" ng-click="updateFinalBoat()" ng-class="updating && 'disabled'"><span class="glyphicon glyphicon-refresh" ng-class="updating && 'glyphicon-refresh-animate'"></span> Actualiser la page</button></p>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Votre bateau &ensp;
+                    <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal-boat-edit"><span class="glyphicon glyphicon-edit"></span> Modifier</button></h4>
+                </div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Nom</dt>
+                        <dd>{{ finalBoat.name }}</dd>
+                        <dt>Catégorie</dt>
+                        <dd>{{ finalBoat.category | catDisp }}</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Vos informations personnelles &ensp;
+                    <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal-leader-edit"><span class="glyphicon glyphicon-edit"></span> Modifier</button></h4>
+                </div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Nom</dt>
+                        <dd>{{ finalBoat.leader.rower.lastname | uppercase }}</dd>
+                        <dt>Prénom</dt>
+                        <dd>{{ finalBoat.leader.rower.firstname }}</dd>
+                        <dt>Email</dt>
+                        <dd>{{ finalBoat.leader.email }}</dd>
+                        <dt>Téléphone</dt>
+                        <dd>{{ finalBoat.leader.phone | phoneDisp }}</dd>
+                        <dt>Numéro de licence</dt>
+                        <dd>{{ finalBoat.leader.rower.license }}</dd>
+                        <dt>Date de naissance</dt>
+                        <dd>{{ finalBoat.leader.rower.birthdate | date:'dd/MM/yyyy' }}</dd>
+                        <dt ng-if="catType == 'C'">Club</dt>
+                        <dd ng-if="catType == 'C'">{{ finalBoat.leader.club }}</dd>
+                        <dt ng-if="catType == 'U'">Université</dt>
+                        <dd ng-if="catType == 'U'">{{ finalBoat.leader.club }}</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Votre équipe</h4>
+                </div>
+                <div class="panel-body">
+                    <span ng-repeat="rower in finalBoat.rowers | orderBy:['lastname', 'firstname']">
+                        <button class="btn btn-warning btn-xs" ng-click='loadRower(rower.id)'><span class="glyphicon glyphicon-edit"></span></button>&emsp;{{ rower.lastname | uppercase }} {{ rower.firstname }} (FFSU : {{ rower.license }}, né(e) le {{ rower.birthdate | date:'dd/MM/yyyy' }})<br />
+                    </span>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-success" ng-class="computing && 'disabled' || ''" ng-click="sendEmail(finalBoat)">Valider</button>
+                &emsp;
+                <button class="btn btn-danger" title="Ceci supprimera toutes les informations que vous avez saisies." ng-click="removeBoat(finalBoat.id)">Annuler</button>
+            </button>
+        </div>
+
+        <div class="modal fade" id="modal-boat-edit" tabindex="-1" role="dialog" aria-labelledby="modalBoatEditLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span>
+                        </button>
+                        <h4 class="modal-title" id="modalBoatEditLabel">Modifier le bateau</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="inputBoatName" class="col-md-4 text-right control-label">Nom du bateau</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="inputBoatName" ng-model="finalBoatE.name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCatType" class="col-md-4 text-right control-label">Catégorie</label>
+                                <div class="col-md-8">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" id="typeCatU" ng-model="catTypeE" value="U">
+                                        Universitaire
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" id="typeCatC" ng-model="catTypeE" value="C">
+                                        Club
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" id="typeCatA" ng-model="catTypeE" value="A">
+                                        Amateur
+                                    </label>
+                                </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" ng-click="editBoat(finalBoatE.id, catTypeE)">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-leader-edit" tabindex="-1" role="dialog" aria-labelledby="modalLeaderEditLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span>
+                        </button>
+                        <h4 class="modal-title" id="modalLeaderEditLabel">Modifier vos informations</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" ng-submit="editLeader(ldr)">
+                            <input type="hidden" ng-model="ldr.id" value="leader.id">
+                            <div class="form-group">
+                                <label for="inputLeaderEmail" class="col-md-2 text-right control-label">Email</label>
+                                <div class="col-md-10">
+                                    <input type="email" class="form-control" id="inputLeaderEmail" ng-model="ldr.email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputLeaderPhone" class="col-md-2 text-right control-label">Téléphone</label>
+                                <div class="col-md-10">
+                                    <input type="tel" class="form-control" id="inputLeaderPhone" ng-model="ldr.phone">
+                                    <span class="help-block">Entrez votre numéro de téléphone au format "06xxxxxxxx" (pas de points ni de tirets).</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="catType != 'A'">
+                                <label for="inputLeaderClub" class="col-md-2 text-right control-label" ng-if="catType == 'C'">Club</label>
+                                <div class="col-md-10" ng-if="catType == 'C'">
+                                    <input type="text" class="form-control" id="inputLeaderClub" ng-model="ldr.club" placeholder="Club">
+                                </div>
+                                <label for="inputLeaderClub" class="col-md-2 text-right control-label" ng-if="catType == 'U'">Université</label>
+                                <div class="col-md-10" ng-if="catType == 'U'">
+                                    <input type="text" class="form-control" id="inputLeaderClub" ng-model="ldr.club" placeholder="Université">
+                                </div>
+                                <input ng-if="catType == 'A'" type="hidden" ng-model="ldr.club" value="''" id="inputLeaderClub">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" ng-click="editLeader(ldr)">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-rowers-edit" tabindex="-1" role="dialog" aria-labelledby="modalRowersEditLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span>
+                        </button>
+                        <h4 class="modal-title" id="modalRowersEditLabel">Modifier un rameur</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <input type="hidden" ng-model="rower.id" value="rwr.id">
+                            <div class="form-group">
+                                <label for="inputRowerLastname" class="col-md-3 text-right control-label">Nom</label>
+                                <div class="col-md-9"><input type="text" class="form-control" id="inputRowerLastname" ng-model="rower.lastname" placeholder="rwr.lastname"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRowerFirstname" class="col-md-3 text-right control-label">Prénom</label>
+                                <div class="col-md-9"><input type="text" class="form-control" id="inputRowerFirstname" ng-model="rower.firstname" placeholder="rwr.firstname"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRowerLicense" class="col-md-3 text-right control-label">Numéro de licence FFSU</label>
+                                <div class="col-md-9"><input type="text" class="form-control" id="inputRowerLicense" ng-model="rower.license" placeholder="rwr.license"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRowerBirthdate"  class="col-md-3 text-right control-label">Date de naissance</label>
+                                <div class="col-md-9"><input type="text" class="form-control" id="inputRowerBirthdate" ng-model="rower.birthdate" ui-mask="99/99/9999" placeholder="{{ rwr.birthdate }}"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" ng-click="editRower(rower)">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-confirm-inscription" tabindex="-1" role="dialog" aria-labelledby="modalConfirmInscriptionLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span>
+                        </button>
+                        <h4 class="modal-title" id="modalConfirmInscriptionLabel">Inscription réussie !</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Votre inscription est maintenant terminée. D'ici quelques instants, vous recevrez un mail confirmant qu'elle a été enregistrée.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

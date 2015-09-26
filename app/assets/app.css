@@ -1,0 +1,74 @@
+/* app css stylesheet */
+
+@font-face{
+  font-family : "Orbitron";
+  src : url('fonts/orbitron-medium-webfont.ttf') format('truetype'),
+         url('fonts/orbitron-medium-webfont.eot') format('eot');
+  /*src:url('fonts/orbitron-medium-webfont.woff')format('woff');*/
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face{
+  font-family: 'HAMBH';
+  src:url('fonts/HAMBH.ttf')format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  padding-top: 70px;
+}
+
+.img-align > div {
+  vertical-align: middle;
+}
+
+.nav > li > a.notvisible, .nav > li > a.notvisible:hover {
+  color: rgba(34, 34, 34, 1);
+}
+
+.orbitron-face {
+  font-family: "Orbitron";
+}
+
+.backPres {
+  background-image: url('img/backViewWB.JPG');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.presentation-sect {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+.bardenav {
+  font-size: 16px;
+}
+
+/* Refresh button rotation */
+.glyphicon-refresh-animate {
+    -webkit-animation: rotateThis 1s infinite linear;
+    -moz-animation: rotateThis 1s infinite linear;
+    -o-animation: rotateThis 1s infinite linear;
+    animation: rotateThis 1s infinite linear;
+}
+
+@-webkit-keyframes rotateThis {
+ from { 
+        -webkit-transform: rotate(0deg);
+    }
+ to  { 
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateThis {
+ from { 
+        transform: rotate(0deg);
+    }
+ to  { 
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,51 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-10 col-md-offset-1 well">
+        <h1 class="text-center">Ajouter un membre du staff</h1>
+
+        <form class="form-horizontal" role="form" ng-submit="addUser(user)">
+            <div class="form-group">
+                <label for="inputLastname" class="col-md-2 text-right control-label">Nom</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="inputLastname" ng-model="user.lastname" placeholder="Nom">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputFirstname" class="col-md-2 text-right control-label">Prénom</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="inputFirstname" ng-model="user.firstname" placeholder="Prénom">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-md-2 text-right control-label">Email</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="inputEmail" ng-model="user.email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputLogin" class="col-md-2 text-right control-label">Login</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="inputLogin" ng-model="user.login" placeholder="Login">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="col-md-2 text-right control-label">Mot de passe</label>
+                <div class="col-md-10">
+                    <input type="password" class="form-control" id="inputPassword" ng-model="user.password" placeholder="Mot de passe">
+                </div>
+            </div>
+            <div class="form-group" ng-class="user.password != user.passwordBis && 'has-error' || ''">
+                <label for="inputPasswordBis" class="col-md-2 text-right control-label">Confirmation</label>
+                <div class="col-md-10">
+                    <input type="password" class="form-control" id="inputPasswordBis" ng-model="user.passwordBis" placeholder="Confirmer le mot de passe">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

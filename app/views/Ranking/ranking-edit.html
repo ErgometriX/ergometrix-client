@@ -1,0 +1,38 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-10 col-md-offset-1 well">
+        <h1 class="text-center">Modifier un classement</h1>
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputName" class="col-md-2 text-right control-label">Nom</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="inputName" ng-model="ranking.name" placeholder="Nom">
+                </div>
+            </div>
+            <div class="col-md-2 text-right">
+                <label class="control-label">Catégories</label>
+            </div>
+            <div class="col-md-10">
+                <table class="table table-striped table-hover text-center">
+                    <tr>
+                        <th class="text-center">Universitaire</th>
+                        <th class="text-center">Club</th>
+                        <th class="text-center">Amateur</th>
+                    </tr>
+                    <tr ng-repeat="cat in categoriesBoat">
+                        <td><button class="btn" ng-class="catCheck.univ[cat.codeN] == 1 && 'btn-primary' || 'btn-default'" ng-click="switchCat('univ', cat.codeN)">{{ cat.label }}</button></td>
+                        <td><button class="btn" ng-class="catCheck.club[cat.codeN] == 1 && 'btn-primary' || 'btn-default'" ng-click="switchCat('club', cat.codeN)">{{ cat.label }}</button></td>
+                        <td><button class="btn" ng-class="catCheck.amat[cat.codeN] == 1 && 'btn-primary' || 'btn-default'" ng-click="switchCat('amat', cat.codeN)">{{ cat.label }}</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group">
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary" value="Enregistrer" ng-click="editRanking(ranking.name, catCheck)" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

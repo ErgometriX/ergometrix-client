@@ -1,0 +1,44 @@
+<div>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="bardenav container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand orbitron-face" ui-sref="root.presentation">ErgometriX</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li ng-class="pageActive == 'dashboard' && 'active'">
+            <a title="Récapitulatif" ui-sref="admin.dashboard" onclick="hideMenu()">Récapitulatif</a>
+          </li>
+          <li ng-class="pageActive == 'boats' && 'active'">
+            <a title="Liste des bateaux" ui-sref="admin.boats" onclick="hideMenu()">Liste des bateaux</a>
+          </li>
+          <li ng-class="pageActive == 'rankings' && 'active'">
+            <a title="Liste des classements" ui-sref="admin.rankings" onclick="hideMenu()">Classements</a>
+          </li>
+          <li ng-class="pageActive == 'users' && 'active'">
+            <a title="Liste des membres du staff" ui-sref="admin.users" onclick="hideMenu()">Administrateurs</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a ui-sref="root.presentation" ng-click="logout()" onclick="hideMenu()">Déconnexion</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div ui-view></div>
+
+<script type="text/javascript">
+function hideMenu() {
+  if($('#bs-example-navbar-collapse-1').hasClass('in')) {
+    $('#bs-example-navbar-collapse-1').collapse('toggle');
+  }
+}
+</script>

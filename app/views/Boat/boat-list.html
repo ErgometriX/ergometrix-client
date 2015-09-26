@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+    <h1 class="text-center">Liste des bateaux inscrits</h1>
+    <div class="col-md-2 text-center">
+        <div class="btn-group-vertical">
+            <a title="Afficher tous les bateaux inscrits (non supprimés)" ng-click="updateBoats('allBoats')" class="btn btn-default" ng-class="(boatsView == 'allBoats') && 'active'">
+                Tous les bateaux
+            </a>
+            <a title="Afficher les bateaux inscrits mais non validés" ng-click="updateBoats('toValidBoats')" class="btn btn-default" ng-class="(boatsView == 'toValidBoats') && 'active'">
+                Bateaux non validés
+            </a>
+            <a title="Afficher les bateaux inscrits mais non payés" ng-click="updateBoats('toPayBoats')" class="btn btn-default" ng-class="(boatsView == 'toPayBoats') && 'active'">
+                Bateaux impayés
+            </a>
+            <a title="Afficher les bateaux qui n'ont pas encore de temps" ng-click="updateBoats('toRecordBoats')" class="btn btn-default" ng-class="(boatsView == 'toRecordBoats') && 'active'">
+                Bateaux à chronométrer
+            </a>
+        </div>
+        <br /><br />
+        <a ng-click="realUpdateBoats()" title="Actualiser la liste des bateaux" class="btn btn-primary">
+            <span class="glyphicon glyphicon-refresh"></span> Actualiser
+        </a>
+    </div>
+
+    <ergo:boatslist></ergo:boatslist>
+
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1 class="text-center">Mes bateaux</h1>
+
+        <form class="form-horizontal text-center" role="search" ng-submit="getMyBoats(email)">
+            <div class="form-group">
+                <label for="inputEmail" class="col-md-2 text-right control-label">Email</label>
+                <div class="col-md-10">
+                    <input type="email" class="form-control" id="inputEmail" ng-model="email" placeholder="Adresse email utilisée lors de l'inscription" />
+                </div>
+            </div>
+            <input type="submit" ng-value="pending && 'Recherche...' || 'Rechercher'" class="btn btn-primary" ng-class="pending && 'disabled' || ''" />
+        </form>
+        <br /><br />
+        <div ng-if="res">
+            <div ng-repeat="boat in myBoats | orderBy:'name'">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ boat.name }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Catégorie</dt>
+                            <dd>{{ boat.category | catDisp }}</dd>
+                            <dt>État</dt>
+                            <dd>
+                                <span ng-if="boat.valid" class="label label-success">validé</span>
+                                <span ng-if="!boat.valid" class="label label-danger">non validé</span>
+                                <span ng-if="boat.payment" class="label label-success">payé</span>
+                                <span ng-if="!boat.payment" class="label label-danger">non payé</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="myBoats.length == 0" class="text-center well">
+                <em>Aucun bateau ne correspond à cette adresse email...</em>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

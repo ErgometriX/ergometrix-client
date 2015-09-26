@@ -1,0 +1,47 @@
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">Galerie de photos</h1>
+        <h2 class="text-center">{{ labels[cat] }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 well">
+        <ul class="list-inline" ng-repeat="(cat, label) in labels">
+            <li>
+                <a ui-sref="root.galerie({cat: cat})">{{ label }}</a>
+            </li>
+        </ul>
+        <div id="links" class="text-center"></div>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+    var code = '';
+    window.onload() = function() {
+        var cat = $('#content-ui-view').scope().cat;
+        var maxi = $('#content-ui-view').scope().maxis[cat];
+        for (var i = 1; i < maxi; i++) {
+            if (i < 10) {
+                var num = '00' + i;
+            } else if (i < 100) {
+                var num = '0' + i;
+            } else {
+                var num = '' + i;
+            }
+            code = code + '<a href="photos/categorized/' + cat + '/ergometrix-2014_' + cat + '-' + num + '.JPG" data-gallery><img src="photos/thumbnails/' + cat + '/ergometrix-2014_' + cat + '-' + num + '.JPG" alt="" class="img-thumbnail"></a>';
+        };
+        $('#links').html(code);
+    };
+</script>
