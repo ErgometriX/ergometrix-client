@@ -13,6 +13,8 @@
     "html5-boilerplate": "~4.3.0",
     "angular-resource": "~1.2.x",
     "angular-ui-router": "~0.2.10",
-    "bootstrap": "~3.2.0"
+    "bootstrap": "~3.2.0",
+    "angular-ui-utils": "~3.0.0",
+    "ngstorage": "~0.3.9"
   }
 }

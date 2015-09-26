@@ -8,9 +8,9 @@ ergoServices
         return { 
             route: function (path) {
                 if (/localhost/.test($location.absUrl())) {
-                    return 'api/web/app_dev.php' + (path == '' ? '' : '/' + path);
+                    return 'http://localhost:9000' + (path == '' ? '' : '/' + path);
                 } else {
-                    return 'api/web' + (path == '' ? '' : '/' + path);
+                    return 'localhost:9000' + (path == '' ? '' : '/' + path);
                 }
             }
         };
