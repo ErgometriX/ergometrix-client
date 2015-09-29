@@ -50,7 +50,7 @@ ergoAuth
 
                 config.params = config.params || {};
                 // to improve: necessary for ui.bootstrap ; and the token is useless for static files
-                if (AuthService.isAuthenticated() && /^api\//.test(config.url)) {
+                if (AuthService.isAuthenticated()) {
                     config.params["bearer"] = AuthService.getToken();
                 }
                 return config || $q.when(config);
