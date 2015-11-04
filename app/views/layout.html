@@ -18,12 +18,14 @@
           <li ng-class="pageActive == 'infosPratiques' && 'active'">
             <a title="Informations pratiques" ui-sref="root.infosPratiques" onclick="hideMenu()">Informations pratiques</a>
           </li>
-          <li ng-class="pageActive == 'filRouge' && 'active'">
+          <!--<li ng-class="pageActive == 'filRouge' && 'active'">
             <a title="Fil rouge" ui-sref="root.filRouge" onclick="hideMenu()">Fil rouge</a>
-          </li>
+          </li>-->
           <li ng-class="pageActive == 'preparation' && 'active'">
             <a title="Conseils de préparation à la compétition" ui-sref="root.preparation" onclick="hideMenu()">Préparation</a>
           </li>
+
+          <!--
           <li ng-class="pageActive == 'inscription' && 'active'" ng-if="checkInscription.check == 1">
             <a title="Inscription" ui-sref="root.inscription" onclick="hideMenu()">Inscription</a>
           </li>
@@ -38,7 +40,7 @@
           </li>
           <li ng-class="pageActive == 'galerie' && 'active'">
             <a title="Galerie photos" ui-sref="root.galerie({cat: 'ambiance'})" onclick="hideMenu()">Galerie</a>
-          </li>
+          </li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a class="notvisible" ui-sref="admin.dashboard" ng-if="authCheck" onclick="hideMenu()">Admin</a></li>
@@ -55,7 +57,7 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 well well-sm text-center">
-      <small><a title="Rejoignez l'événement Facebook" href="https://www.facebook.com/events/1528599550714493" target="_blank"><img src="assets/img/FB-f-Logo__blue_29.png" alt="Facebook" style="height: 20px; vertical-align: bottom;" /></a>&nbsp;<a title="Rejoignez l'événement Facebook" href="https://www.facebook.com/events/1528599550714493" target="_blank">Rejoignez l'événement !</a> &mdash; <a href="mailto:ergometrix2014@gmail.com" title="Envoyez-nous un mail">Nous contacter</a> &mdash; <a href="mailto:camille.masset@polytechnique.edu" title="Contacter le webmestre">Webmestre</a></small> 
+      <small><!--<a title="Rejoignez l'événement Facebook" href="https://www.facebook.com/events/1528599550714493" target="_blank"><img src="assets/img/FB-f-Logo__blue_29.png" alt="Facebook" style="height: 20px; vertical-align: bottom;" /></a>&nbsp;<a title="Rejoignez l'événement Facebook" href="https://www.facebook.com/events/1528599550714493" target="_blank">Rejoignez l'événement !</a>--> &mdash; <a href="mailto:ergometrix2015@gmail.com" title="Envoyez-nous un mail">Nous contacter</a> &mdash; <a href="mailto:raphael.olivier@polytechnique.edu" title="Contacter le webmestre">Webmestre</a></small> 
     </div>
   </div>
 </div>
