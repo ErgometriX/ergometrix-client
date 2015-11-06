@@ -27,6 +27,7 @@ ergoApp.config(['$stateProvider', '$urlRouterProvider',
             {codeN: '4-x', label: 'Quatre mixte (relais 4*500m)'},
             {codeN: '2-m', label: 'Double masculin (1000m slides)'},
             {codeN: '2-f', label: 'Double féminin (1000m slides)'},
+            {codeN: '2-x', label: 'Double mixte (1000m slides)'},
             {codeN: '1-m', label: 'Individuel masculin (1000m)'},
             {codeN: '1-f', label: 'Individuel féminin (1000m)'}
             {codeN: '0-m', label: 'Individuel masculin (2000m)'},
@@ -35,7 +36,6 @@ ergoApp.config(['$stateProvider', '$urlRouterProvider',
         var categoriesType = [
             {codeT: '-U', label: 'Universitaire'},
             {codeT: '-C', label: 'Club'},
-            {codeT: '-D', label: 'Défense'}
             {codeT: '-A', label: 'Autre'}
         ];
         var categories = [
