@@ -19,30 +19,36 @@ ergoApp.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
         var categoriesBoat = [
-            {codeN: '8-m', label: 'Huit masculin'},
-            {codeN: '8-f', label: 'Huit féminin'},
-            {codeN: '4-m', label: 'Quatre masculin (relais)'},
-            {codeN: '4-f', label: 'Quatre féminin (relais)'},
-            {codeN: '4-x', label: 'Quatre mixte (relais)'},
-            {codeN: '2-m', label: 'Double masculin'},
-            {codeN: '2-f', label: 'Double féminin'},
-            {codeN: '1-m', label: 'Individuel masculin'},
-            {codeN: '1-f', label: 'Individuel féminin'}
+            {codeN: '8-m', label: 'Huit masculin (1000m slides)'},
+            {codeN: '8-f', label: 'Huit féminin (1000m slides)'},
+            {codeN: '8-f', label: 'Huit mixte (1000m slides)'},
+            {codeN: '4-m', label: 'Quatre masculin (relais 4*500m)'},
+            {codeN: '4-f', label: 'Quatre féminin (relais 4*500m)'},
+            {codeN: '4-x', label: 'Quatre mixte (relais 4*500m)'},
+            {codeN: '2-m', label: 'Double masculin (1000m slides)'},
+            {codeN: '2-f', label: 'Double féminin (1000m slides)'},
+            {codeN: '1-m', label: 'Individuel masculin (1000m)'},
+            {codeN: '1-f', label: 'Individuel féminin (1000m)'}
+            {codeN: '0-m', label: 'Individuel masculin (2000m)'},
+            {codeN: '0-f', label: 'Individuel féminin (2000m)'}
         ];
         var categoriesType = [
-            {codeT: '-U', label: 'universitaire'},
-            {codeT: '-C', label: 'club'},
-            {codeT: '-A', label: 'amateur'}
+            {codeT: '-U', label: 'Universitaire'},
+            {codeT: '-C', label: 'Club'},
+            {codeT: '-D', label: 'Défense'}
+            {codeT: '-A', label: 'Autre'}
         ];
         var categories = [
             {code: '8-m-U', label: 'Huit masculin universitaire'},
             {code: '8-f-U', label: 'Huit féminin universitaire'},
             {code: '4-x-U', label: 'Quatre relais universitaire'},
-            {code: '4-x-G', label: 'Quatre relais amateur'},
+            {code: '4-x-G', label: 'Quatre relais'},
             {code: '2-m-G', label: 'Double masculin'},
             {code: '2-f-G', label: 'Double féminin'},
             {code: '1-m-U', label: 'Individuel masculin'},
             {code: '1-f-U', label: 'Individuel féminin'}
+            {code: '0-m-U', label: 'Individuel masculin'},
+            {code: '0-f-U', label: 'Individuel féminin'}
         ];
         
         $stateProvider

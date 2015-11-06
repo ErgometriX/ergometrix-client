@@ -10,7 +10,7 @@
             <h3 class="text-center">Modalités d'inscription</h3>
             <p class="lead">Merci de lire les informations ci-dessous. Une fois ces conditions acceptées, vous pourrez inscrire votre équipage.</p>
             <h4>Avant le jour de l'épreuve</h4>
-            <p>L'inscription se fait en ligne depuis ce site. Les préinscriptions sur le site sont possibles jusqu'au lundi 30 novembre 2012 à 23h59h.<br />
+            <p>L'inscription se fait en ligne depuis ce site. Les préinscriptions sur le site sont possibles jusqu'au lundi 30 novembre 2015 à 23h59h.<br />
             Tout engagement est ferme et définitif. Il implique l'acceptation complète du règlement et ne peut faire l'objet de remboursement pour quelque motif que ce soit (maladie, examen, mariage, etc.).</p>
             <p>Le règlement se fait <em>en liquide le jour de la compétition</em> ou <em>par chèque</em> à l'ordre du Binet Aviron. L'adresse de règlement est la suivante :
             <address class="text-center">
@@ -30,13 +30,18 @@
                 <li>5,00 € pour les inscriptions en ligne,</li>
                 <li>10,00 € le jour de l'épreuve.</li>
             </ul>
-            (Le tarif est identique pour tous les statuts et donne un droit d'accès aux épreuves de ErgometriX en accord avec l'Article 9 du règlement.)<br />
+            (Le tarif est identique pour tous les statuts et donne un droit d'accès aux épreuves de ErgometriX en accord avec l'article 9 du règlement.)<br />
             Le montant de l'inscription reste acquis à l'organisation en cas de non présentation d'un concurrent à l'épreuve.<br />
             Pour les X : possibilité de payer par trigramme, il suffit de le préciser lors de l'inscription en envoyant un mail à <a href="mailto:ergometrix2015@gmail.com">ergometrix2015@gmail.com</a>. 
 
             <h4>Constitution d'équipage</h4>
-            <p>Un équipage est formé de rameurs d'une même catégorie, au nombre de un, deux, quatre ou huit.<br />
-            Un rameur peut participer à plusieurs courses selon les conditions exposées à l'article 9 du règlement (<a ui-sref="root.competition" title="Catégories ouvertes">plus d'informations ici</a>).
+            <p>Un équipage est formé de rameurs d'une même catégorie, au nombre de un, deux, quatre ou huit. Un équipage ne s'inscrit à la fois qu'à une épreuve.<br />
+            Un rameur peut participer à plusieurs courses selon les conditions exposées à l'article 9 du règlement (<a ui-sref="root.competition" title="Catégories ouvertes">plus d'informations ici</a>), sans modification de tarif. Il lui faut pour cela s'inscrire dans plusieurs bateaux.
+        </p>
+
+            <h4>Pour les universitaires</h4>
+            <p>ErgometriX est qualificatif pour les championnats universitaires d'aviron indoor. Les conditions pour se qualifier <a> sont disponibles ici</a>. Attention, il faut participer au relais et ramer 1000m, dans les limites de temps indiquées.
+            </p>
 
             <h4>Contact</h4>
             <p>N'hésitez pas à nous contacter si besoin : <a href="mailto:ergometrix2015@gmail.com" title="Nous contacter">ergometrix2015@gmail.com</a>.</p>
@@ -45,7 +50,7 @@
                 <div class="form-group">
                     <label for="inputAcceptConditions" class="checkbox text-center">
                         <input type="checkbox" id="inputAcceptConditions" ng-model="acceptConditionsCheck">
-                        Je comprends et j'accepte les conditions ci-dessous.
+                        Je comprends et j'accepte les conditions ci-dessus.
                     </label>
                 </div>
                 <div class="form-group">
@@ -159,7 +164,7 @@
                         <div class="radio" ng-hide="boat.category == '4-m' || boat.category == '4-f'">
                             <label>
                                 <input type="radio" id="typeCatU" ng-model="catType" value="-U">
-                                Universitaire &emsp; <span ng-if="boat.category == '4-x'" class="text-danger strong">Pour cette catégorie, les numéros de licence FFSU de tous les participants sont nécessaires</span>
+                                Universitaire &emsp; <span class="text-danger strong">Pour cette catégorie, les numéros de licence FFSU de tous les participants sont nécessaires</span>
                             </label>
                         </div>
                         <div class="radio">
@@ -170,8 +175,14 @@
                         </div>
                         <div class="radio">
                             <label>
+                                <input type="radio" id="typeCatA" ng-model="catType" value="-D">
+                                Défense
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
                                 <input type="radio" id="typeCatA" ng-model="catType" value="-A">
-                                Amateur
+                                Autre
                             </label>
                         </div>
                     </div>
@@ -186,6 +197,12 @@
                     <label for="inputLeaderClub" class="col-md-2 text-right control-label">Club</label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="inputLeaderClub" ng-model="leader.club" placeholder="Club" required="required">
+                    </div>
+                </div>
+                <div class="form-group" ng-if="catType == '-D'" ng-hide="true">
+                    <label for="inputLeaderClub" class="col-md-2 text-right control-label">Club</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputLeaderClub" ng-model="leader.club" placeholder="Club">
                     </div>
                 </div>
                 <div class="form-group" ng-if="catType == '-A'" ng-hide="true">
