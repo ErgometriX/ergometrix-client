@@ -35,7 +35,7 @@
             Pour les X : possibilité de payer par trigramme, il suffit de le préciser lors de l'inscription en envoyant un mail à <a href="mailto:ergometrix2015@gmail.com">ergometrix2015@gmail.com</a>. 
 
             <h4>Constitution d'équipage</h4>
-            <p>Un équipage est formé de rameurs d'une même catégorie, au nombre de un, deux, quatre ou huit. Un équipage ne s'inscrit à la fois qu'à une épreuve.<br />
+            <p>Un équipage est formé de rameurs d'une même catégorie, au nombre de un, deux, quatre ou huit. Un équipage correspond à une épreuve.<br />
             Un rameur peut participer à plusieurs courses selon les conditions exposées à l'article 9 du règlement (<a ui-sref="root.competition" title="Catégories ouvertes">plus d'informations ici</a>), sans modification des frais d'inscription. Il lui faut pour cela s'inscrire dans plusieurs bateaux.
         </p>
 
@@ -197,12 +197,6 @@
                     <label for="inputLeaderClub" class="col-md-2 text-right control-label">Club</label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="inputLeaderClub" ng-model="leader.club" placeholder="Club" required="required">
-                    </div>
-                </div>
-                <div class="form-group" ng-if="catType == '-D'" ng-hide="true">
-                    <label for="inputLeaderClub" class="col-md-2 text-right control-label">Club</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="inputLeaderClub" ng-model="leader.club" placeholder="Club">
                     </div>
                 </div>
                 <div class="form-group" ng-if="catType == '-A'" ng-hide="true">
