@@ -10,7 +10,7 @@ ergoServices
                 if (/localhost/.test($location.absUrl())) {
                     return 'http://localhost:9000' + (path == '' ? '' : '/' + path);
                 } else {
-                    return 'localhost:9000' + (path == '' ? '' : '/' + path);
+                    return 'api/web' + (path == '' ? '' : '/' + path);
                 }
             }
         };
