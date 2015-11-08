@@ -97,6 +97,13 @@ ergoApp.config(['$stateProvider', '$urlRouterProvider',
                 $rootScope.pageActive = 'filRouge';
             }
         })
+        .state('root.sponsors', {
+            url: '/sponsors',
+            templateUrl: 'views/Static/sponsors.html',
+            controller: function($scope, $rootScope) {
+                $rootScope.pageActive = 'sponsors';
+            }
+        })
         .state('root.preparation', {
             url: '/preparation',
             templateUrl: 'views/Static/preparation.html',
