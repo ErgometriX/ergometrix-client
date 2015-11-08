@@ -30,16 +30,13 @@ ergoApp.config(['$stateProvider', '$urlRouterProvider',
             {codeN: '2-x', label: 'Double mixte (1000m slides)'},
             {codeN: '1-m', label: 'Individuel masculin (1000m)'},
             {codeN: '1-f', label: 'Individuel féminin (1000m)'},
-            {codeN: '0-m', label: 'Individuel masculin (2000m)'},
-            {codeN: '0-f', label: 'Individuel féminin (2000m)'}
+            {codeN: '1-M', label: 'Individuel masculin (2000m)'},
+            {codeN: '1-F', label: 'Individuel féminin (2000m)'}
         ];
         var categoriesType = [
             {codeT: '-U', label: 'Universitaire'},
             {codeT: '-C', label: 'Club'},
-<<<<<<< HEAD
-=======
             {codeT: '-D', label: 'Défense'},
->>>>>>> 9bcb4317812234fe3dd2e81a9276714eb1cf821f
             {codeT: '-A', label: 'Autre'}
         ];
         var categories = [
@@ -51,8 +48,8 @@ ergoApp.config(['$stateProvider', '$urlRouterProvider',
             {code: '2-f-G', label: 'Double féminin'},
             {code: '1-m-U', label: 'Individuel masculin'},
             {code: '1-f-U', label: 'Individuel féminin'},
-            {code: '0-m-U', label: 'Individuel masculin'},
-            {code: '0-f-U', label: 'Individuel féminin'}
+            {code: '1-M-U', label: 'Individuel masculin'},
+            {code: '1-F-U', label: 'Individuel féminin'}
         ];
         
         $stateProvider
